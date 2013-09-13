@@ -1,4 +1,4 @@
-
+source("ww_functions.R")
 # Define K, the total number of traits in the system
 K<-500
 
@@ -7,8 +7,35 @@ L<-10
 
 # Create K*K matrix
 set.seed(5) #set the seed so that the matrix remains the same
-K.mat<-matrix(nrow=K,ncol=K)
+trait.scores<-rnorm(250000,0,1)
+K.mat<-matrix(trait.scores,nrow=K,ncol=K)
+
 
 # Set the threshold for scores
-threshold
+#######################################
+#######################################
+sampler<-function(x){
+  vec<-sample(x,10)
+  return(sum(vec))
+}
 
+test1<-replicate(1000000,sampler(trait.scores))
+
+hist(test1,freq=F)
+quantile(test1)
+#######################################
+#######################################
+threshold<-2.11 # set to be the 75% quantile of the distribution above
+
+
+# Test the functions. Defines two species determines their score and whether there is an interaction
+int<-c()
+for(i in 1:100){
+speciesA<-define.species(L,K)
+speciesB<-define.species(L,K)
+
+score<-trait.score(speciesA,speciesB,K.mat)
+int[i]<-(is.interaction(score,threshold))
+}
+
+sum(int=="Interaction")
