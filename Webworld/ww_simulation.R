@@ -5,13 +5,21 @@ K<-500
 # Define L, the number of traits defining a species
 L<-10
 
+# Define the external environment node
+n.0<-sample(1:K,L)
+
 # Create K*K matrix
 set.seed(5) #set the seed so that the matrix remains the same
-trait.scores<-rnorm(250000,0,1)
+
+trait.scores<-rnorm(250000,0,1) # Caldarelli assumes antisymmetric matrix, 
+                                # but I do not know if that is necessary
+
 K.mat<-matrix(trait.scores,nrow=K,ncol=K)
 
 
 # Set the threshold for scores
+# Caldarelli uses a max(0,sum of mij) function where positive value indicates interaction
+# Zero means no interaction
 #######################################
 #######################################
 sampler<-function(x){
@@ -26,6 +34,8 @@ quantile(test1)
 #######################################
 #######################################
 threshold<-2.11 # set to be the 75% quantile of the distribution above
+
+# 
 
 
 # Test the functions. Defines two species determines their score and whether there is an interaction

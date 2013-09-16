@@ -8,6 +8,11 @@ define.species<-function(L,K){        #function takes in number of traits (l) an
   traits<-sample(1:K,L)               #pick out the l traits from 1:K
   return(traits)                      #outputs trait vector
 }
+
+# Function that compares new species to old species to see if they are the same or different
+species.check<-function(spA,sp.list){ # inputs will be new species and the list of old species
+  
+}
   
 # Function that then compares the traits between two species to determine the score.Is there:
 trait.score<-function(s1,s2,k.mat){         #input is two trait vectors and the K matrix
@@ -17,6 +22,8 @@ trait.score<-function(s1,s2,k.mat){         #input is two trait vectors and the 
   }
   score<-sum(score.vector)
   return(score)
+  #caldarelli.score<-max(0,(1/L)*score)  # based on Caldarelli et al 1998
+  #return(score)
 }
 
 #### 1. An interaction 
