@@ -3,9 +3,9 @@
 ## Functions
 
 # Function that defines a species by pulling L numbers randomly from 1:K
-define.species<-function(L,K){        #function takes in number of traits (l) and 
+define.species<-function(L,K){        #function takes in number of traits (L) and 
                                       #the K*K matrix of trait matches
-  traits<-sample(1:K,L)               #pick out the l traits from 1:K
+  traits<-sample(1:K,L)               #pick out the L traits from 1:K
   return(traits)                      #outputs trait vector
 }
 
@@ -23,7 +23,7 @@ trait.score<-function(s1,s2,k.mat){         #input is two trait vectors and the 
   score<-sum(score.vector)
   return(score)
   #caldarelli.score<-max(0,(1/L)*score)  # based on Caldarelli et al 1998
-  #return(score)
+  #return(caldarelli.score)
 }
 
 #### 1. An interaction 
